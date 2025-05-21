@@ -1,14 +1,14 @@
 function addTask(tasks, task) {
     tasks.push(task);
+    console.log(`\n("${task} has been added to the list!)`);
 }
 
 function listTasks(tasks) {
-    tasks.forEach((task, index) => {
-        console.log(`${index + 1}. ${task}`);
-    });
+    console.log("\nCURRENT TASKS");
+    tasks.forEach(task => console.log(task));
 }
 
 
 
-module.exports = {addTask, listTasks};
+module.exports = {addTask, listTasks,};
 

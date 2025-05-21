@@ -1,22 +1,27 @@
 const path = require('path'); // the built-in path module
-const taskManager = require('./taskManager'); 
-const fileHandler = require('./fileHandler');
+const tm = require('./taskManager'); 
+const { saveTasks, loadTasks } = require('./fileHandler');
 
 //makes new tasks.json file and stores the tasks in an array in this file.
 const filePath = path.join(__dirname, 'tasks.json');
+console.log(filePath);
 
-let tasks = fileHandler.loadTasks(filePath);
+//load tasks
+let allTasksArray = loadTasks(filePath);
+console.log(allTasksArray);
+
+//add tasks
+tm.addTask(allTasksArray, "Walk Dog");
+tm.addTask(allTasksArray, "Eat Dinner");
+tm.addTask(allTasksArray, "Shower");
+tm.addTask(allTasksArray, "Do Laundry");
+tm.addTask(allTasksArray, "Study");
+
+//list tasks
+tm.listTasks(allTasksArray);
+
+//save updated list to the file
+saveTasks(filePath, allTasksArray);
 
 
-
-taskManager.addTask(tasks, "Walk Dog");
-taskManager.addTask(tasks, "Eat Dinner");
-taskManager.addTask(tasks, "Shower");
-taskManager.addTask(tasks, "Do Laundry");
-taskManager.addTask(tasks, "Study");
-
-
-taskManager.listTasks(tasks);
-
-fileHandler.saveTasks(filePath, tasks);
 
